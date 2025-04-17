@@ -1,0 +1,34 @@
+{
+  "name": "@selfage/tz_date",
+  "version": "1.0.0",
+  "description": "Timezone aware date handling.",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/selfage/tz_date.git"
+  },
+  "keywords": [
+    "Date",
+    "Timezone"
+  ],
+  "author": "Yuxuan Xie <teststaybaka@gmail.com> (http://www.yuxuanxie.com)",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/selfage/tz_date/issues"
+  },
+  "homepage": "https://github.com/selfage/tz_date#readme",
+  "main": "./tz_date.js",
+  "types": "./tz_date.d.ts",
+  "files": [
+    "**/*.js",
+    "**/*.d.ts",
+    "!**/*_test.*",
+    "!test_data/**/*"
+  ],
+  "devDependencies": {
+    "@selfage/cli": "^5.0.0",
+    "@selfage/test_matcher": "^2.1.8",
+    "@selfage/test_runner": "^5.2.0",
+    "@selfage/tsconfig": "^1.1.0",
+    "typescript": "^5.4.5"
+  }
+}
