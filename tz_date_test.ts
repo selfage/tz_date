@@ -92,6 +92,16 @@ TEST_RUNNER.run({
       },
     },
     {
+      name: "NoopConversion",
+      execute() {
+        // Execute
+        let date = TzDate.fromDate(new Date("2024-01-01T00:00:00Z"), 0);
+
+        // Verify
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "today");
+      },
+    },
+    {
       name: "FromLocalDateString",
       execute() {
         // Execute
