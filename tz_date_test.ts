@@ -12,8 +12,8 @@ TEST_RUNNER.run({
         let date = TzDate.fromTimestampString("2024-01-01T08:31:20.112Z", 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "today");
-        assertThat(date.toMonthISOString(), eq("2024-01"), "month");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "today");
+        assertThat(date.toLocalMonthISOString(), eq("2024-01"), "month");
         assertThat(
           date.toUtcISOString(),
           eq("2024-01-01T08:00:00.000Z"),
@@ -34,8 +34,8 @@ TEST_RUNNER.run({
         date = TzDate.fromTimestampString("2024-01-01T07:33:53.984Z", 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-12-31"), "prev day");
-        assertThat(date.toMonthISOString(), eq("2023-12"), "prev month");
+        assertThat(date.toLocalDateISOString(), eq("2023-12-31"), "prev day");
+        assertThat(date.toLocalMonthISOString(), eq("2023-12"), "prev month");
         assertThat(
           date.toUtcISOString(),
           eq("2023-12-31T08:00:00.000Z"),
@@ -63,7 +63,7 @@ TEST_RUNNER.run({
         );
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "today");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "today");
 
         // Execute
         date = TzDate.fromTimestampMs(
@@ -72,7 +72,7 @@ TEST_RUNNER.run({
         );
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-12-31"), "prev day");
+        assertThat(date.toLocalDateISOString(), eq("2023-12-31"), "prev day");
       },
     },
     {
@@ -82,13 +82,13 @@ TEST_RUNNER.run({
         let date = TzDate.fromDate(new Date("2024-01-01T08:00:00Z"), 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "today");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "today");
 
         // Execute
         date = TzDate.fromDate(new Date("2024-01-01T07:00:00Z"), 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-12-31"), "prev day");
+        assertThat(date.toLocalDateISOString(), eq("2023-12-31"), "prev day");
       },
     },
     {
@@ -98,14 +98,14 @@ TEST_RUNNER.run({
         let date = TzDate.fromLocalDateString("2024-01-01", 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "today");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "today");
 
         // Execute
         date = TzDate.fromLocalDateString("2024-01", 8);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "first day of month");
-        assertThat(date.toMonthISOString(), eq("2024-01"), "month");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "first day of month");
+        assertThat(date.toLocalMonthISOString(), eq("2024-01"), "month");
       },
     },
     {
@@ -118,43 +118,43 @@ TEST_RUNNER.run({
         date.addDays(-1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-12-31"), "-1 day");
+        assertThat(date.toLocalDateISOString(), eq("2023-12-31"), "-1 day");
 
         // Execute
         date.addDays(1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "+1 day");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "+1 day");
 
         // Execute
         date.addMonths(-1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-12-01"), "-1 month");
+        assertThat(date.toLocalDateISOString(), eq("2023-12-01"), "-1 month");
 
         // Execute
         date.addMonths(1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "+1 month");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "+1 month");
 
         // Execute
         date.addYears(-1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2023-01-01"), "-1 year");
+        assertThat(date.toLocalDateISOString(), eq("2023-01-01"), "-1 year");
 
         // Execute
         date.addYears(1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "+1 year");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "+1 year");
 
         // Execute
         date.moveToLastDayOfMonth();
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-31"), "last day of month");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-31"), "last day of month");
 
         // Execute
         // Adding month to the last day of a month is an edge case that's hard to handle correctly. Always move to the first day of the month first.
@@ -162,7 +162,7 @@ TEST_RUNNER.run({
         date.addMonths(1);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-02-01"), "first day of +1 month");
+        assertThat(date.toLocalDateISOString(), eq("2024-02-01"), "first day of +1 month");
       },
     },
     {
@@ -175,8 +175,8 @@ TEST_RUNNER.run({
         let date2 = date.clone().addMonths(3);
 
         // Verify
-        assertThat(date.toDateISOString(), eq("2024-01-01"), "date");
-        assertThat(date2.toDateISOString(), eq("2024-04-01"), "date2");
+        assertThat(date.toLocalDateISOString(), eq("2024-01-01"), "date");
+        assertThat(date2.toLocalDateISOString(), eq("2024-04-01"), "date2");
 
         // Execute
         let months = date2.minusDateInMonths(date);

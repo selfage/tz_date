@@ -84,14 +84,14 @@ export class TzDate {
     return this;
   }
 
-  public toDateISOString(): string {
+  public toLocalDateISOString(): string {
     let year = this.dateUtc.getUTCFullYear().toString().padStart(4, "0");
     let month = (this.dateUtc.getUTCMonth() + 1).toString().padStart(2, "0");
     let day = this.dateUtc.getUTCDate().toString().padStart(2, "0");
     return `${year}-${month}-${day}`;
   }
 
-  public toMonthISOString(): string {
+  public toLocalMonthISOString(): string {
     let year = this.dateUtc.getUTCFullYear().toString().padStart(4, "0");
     let month = (this.dateUtc.getUTCMonth() + 1).toString().padStart(2, "0");
     return `${year}-${month}`;
@@ -99,12 +99,12 @@ export class TzDate {
 
   public toUtcISOString(): string {
     let hour = this.negativeOffset.toString().padStart(2, "0");
-    return `${this.toDateISOString()}T${hour}:00:00.000Z`;
+    return `${this.toLocalDateISOString()}T${hour}:00:00.000Z`;
   }
 
   public toLocalISOString(): string {
     let hour = this.negativeOffset.toString().padStart(2, "0");
-    return `${this.toDateISOString()}T00:00:00.000-${hour}`;
+    return `${this.toLocalDateISOString()}T00:00:00.000-${hour}`;
   }
 
   public toTimestampMs(): number {
