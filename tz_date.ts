@@ -1,24 +1,29 @@
 // Internal Date representation is set in UTC timezone. Currently only supports negative timezone offset. E.g. UTC-8
 export class TzDate {
-  public static fromDate(localDate: Date, negativeOffset: number): TzDate {
-    if (localDate.getUTCHours() < negativeOffset) {
-      localDate.setUTCDate(localDate.getUTCDate() - 1);
-    }
-    return new TzDate(localDate, negativeOffset);
+  public static fromDate(date: Date, negativeOffset: number): TzDate {
+    return TzDate.fromNewDate(new Date(date), negativeOffset);
   }
 
   public static fromTimestampMs(
     timestampMs: number,
     negativeOffset: number,
   ): TzDate {
-    return TzDate.fromDate(new Date(timestampMs), negativeOffset);
+    return TzDate.fromNewDate(new Date(timestampMs), negativeOffset);
   }
 
   public static fromTimestampString(
     timestampISOString: string, // yyyy-MM-ddTHH:mm:ssZ
     negativeOffset: number,
   ): TzDate {
-    return TzDate.fromDate(new Date(timestampISOString), negativeOffset);
+    return TzDate.fromNewDate(new Date(timestampISOString), negativeOffset);
+  }
+
+  // The `newDate` will be changed in place.
+  public static fromNewDate(newDate: Date, negativeOffset: number): TzDate {
+    if (newDate.getUTCHours() < negativeOffset) {
+      newDate.setUTCDate(newDate.getUTCDate() - 1);
+    }
+    return new TzDate(newDate, negativeOffset);
   }
 
   // Means there is no need to convert wrt timezone.
